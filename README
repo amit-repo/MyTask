@@ -1,0 +1,52 @@
+Task 1:
+"""
+Read file "data.json", and write a recursive function to convert every value of key "quantity" to 23gm, 50gm and 260gm, presently data is given for 100gm.
+"""
+=>
+Iterate through the json file and modify the value corresponding to quantity field according to specified grams of medicine(Eg. 25gm, 50gm, etc.)
+
+Task 2:
+"""
+Parse "http://www.tennisabstract.com/cgi-bin/player.cgi?p=<playername>" website to get any player's ace percentage, serve point winning percentage and reverse point winning percentage (from last 10 matches) using python requests or urllib.
+"""
+=>
+Url to tennis player record
+name = "KeiNishikori"
+
+#url="http://www.tennisabstract.com/cgi-bin/player.cgi?p="+name
+
+Parse above url to check for variable having all reord informationi and extract js file to have corresponding data record.
+
+Eg.
+<script type="text/javascript" src="http://www.minorleaguesplits.com/tennisabstract/cgi-bin/jsmatches/KeiNishikori.js"></script>
+<script type="text/javascript" src="http://www.minorleaguesplits.com/tennisabstract/cgi-bin/jsdoubles/KeiNishikori.js"></script>
+
+
+var matchhead = ["date","tourn","surf","level","wl","rank","seed","entry","round",
+                 "score","max","opp","orank","oseed","oentry","ohand","obday",
+                 "oht","ocountry","oactive","time","aces","dfs","pts","firsts","fwon",
+                 "swon",'games',"saved","chances","oaces","odfs","opts","ofirsts",
+                 "ofwon","oswon",'ogames',"osaved","ochances", "obackhand", "chartlink",
+                 "pslink","whserver","matchid","wh","roundnum","matchnum"]
+
+From corresponding js file, we can see variable matchmx has all required values corresponding to matchhead.
+Eg.
+        var splits_head = matchhead;
+        var splits_matches = matchmx;
+
+So parse the js file to have all required information.
+
+Formula used as per below:
+1. ace % = (aces / pts) * 100
+2. spw % = ((fown + swon) / pts) * 100
+3. rpw % = (1 - ((ofwon + oswon) / opts)) * 100
+
+{
+    var rpw = 1 - (mt.ofwon + mt.oswon)/mt.opts;
+    var spw = (mt.fwon + mt.swon)/mt.pts;
+}
+
+Task 3:
+"""
+Write a custom random number generation algo which should be 73% biased to the higher number. Like if I want ‘a random number between 1 to 10’ 100 times then it should give ‘number more than 5’ 73 times and ‘less than 5’ 27 times. You’re not allowed to use any predefined random number generation function nor use of any kind of third party library to generate random number.
+"""
